@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="simpleDetectiveService"
+          class="com.cems.pojos.services.impl.SimpleDetectiveService">
+        <property name="repo" ref="detectiveRepo"/>
+    </bean>
+
+    <bean id="detectiveRepo"
+          class="com.cems.xml.repos.impl.JbdcDetectiveRepo">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
+        <property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="user" value="prod"/>
+        <property name="password" value="prod"/>
+        <property name="loginTimeout" value="300"/>
+    </bean>
+</beans>
